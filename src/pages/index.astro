@@ -1,0 +1,95 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Pricing from "../components/Pricing.astro";
+import ContentBlocks from "../components/ContentBlocks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { faq, singleScreenPlans, site } from "../data/site";
+
+const title = "Smarters IPTV Deutschland: IPTV kaufen fuer Smart TV & IPTV Box";
+const description = "Smarters IPTV Deutschland: IPTV Abo in EUR fuer Smart TV, Fire TV Stick, Android, iOS, Windows und IPTV Box mit deutschen Sendern, 4K und Support.";
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: site.name,
+    url: site.url,
+    logo: `${site.url}/logo-new.svg`,
+    email: site.email,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      telephone: site.whatsapp,
+      availableLanguage: ["de"],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Smarters IPTV Deutschland",
+    serviceType: "IPTV Abo Beratung und Aktivierung",
+    areaServed: "DE",
+    provider: {
+      "@type": "Organization",
+      name: site.name,
+    },
+    offers: singleScreenPlans.map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      price: plan.priceValue,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      url: `${site.url}/iptv-abo-deutschland/#${plan.id}`,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  },
+];
+---
+
+<BaseLayout title={title} description={description} preloadHero>
+  <Header />
+  <main>
+    <section class="hero hero-studio">
+      <picture>
+        <source srcset="/hero-iptv-deutschland-480.webp 480w, /hero-iptv-deutschland-768.webp 768w, /hero-iptv-deutschland-960.webp 960w, /hero-iptv-deutschland-1280.webp 1280w" sizes="(max-width: 640px) 480px, (max-width: 980px) 768px, 100vw" type="image/webp" />
+        <img src="/hero-iptv-deutschland-1280.jpg" width="1280" height="720" alt="Smarters IPTV Deutschland auf Smart TV in einer modernen Wohnung" fetchpriority="high" loading="eager" decoding="async" />
+      </picture>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Smarters IPTV fuer Deutschland</p>
+        <h1>Smarters <span class="text-red">IPTV</span> Deutschland</h1>
+        <p>IPTV kaufen mit klaren Paketen fuer Smart TV, Fire TV Stick, Android, iOS, Windows und IPTV Box - inklusive Geraetepruefung, deutscher Senderkategorien und WhatsApp-Hilfe.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#angebote">Angebote ansehen</a>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="Smarters IPTV Vorteile">
+        <span><strong>DE</strong> Fokus auf Deutschland</span>
+        <span><strong>4K</strong> HD, FHD und 4K</span>
+        <span><strong>24/7</strong> WhatsApp Support</span>
+        <span><strong>2x</strong> Multi-Screen Optionen</span>
+      </div>
+    </section>
+    <section class="quick-proof">
+      <article><strong>39.000+</strong><span>Sender je nach Paket</span></article>
+      <article><strong>40.000+</strong><span>Filme und Serien</span></article>
+      <article><strong>24/7</strong><span>Support per WhatsApp</span></article>
+      <article><strong>48h</strong><span>Kompatibilitaetscheck</span></article>
+    </section>
+    <Pricing />
+    <ContentBlocks />
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+</BaseLayout>

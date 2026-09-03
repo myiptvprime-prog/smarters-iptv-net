@@ -1,0 +1,32 @@
+---
+import { navLinks, site } from "../data/site";
+---
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <img src="/logo-footer.svg" width="268" height="64" alt="Smarters IPTV" />
+      <p>Smarters IPTV fuer Deutschland: klare Paketberatung, schnelle Aktivierung und Hilfe bei Smart TV, Fire TV, Android, iOS, Windows und IPTV Box.</p>
+    </div>
+    <div>
+      <h2>Seiten</h2>
+      {navLinks.map(([label, href]) => <a href={href}>{label}</a>)}
+    </div>
+    <div>
+      <h2>Geraete</h2>
+      <a href="/iptv-smart-tv/">Smart TV</a>
+      <a href="/iptv-android/">Android</a>
+      <a href="/iptv-fire-tv/">Fire TV</a>
+      <a href="/iptv-ios/">iOS / tvOS</a>
+    </div>
+    <div>
+      <h2>Kontakt</h2>
+      <a href={site.whatsappUrl}>WhatsApp {site.whatsapp}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+      <a href="/agb/">AGB</a>
+    </div>
+  </div>
+  <p class="legal-note">© 2026 Smarters IPTV. Alle Angaben zu Sendern, Apps und Verfuegbarkeit haengen vom gewaehlten Paket, Geraet und Nutzungsrecht ab.</p>
+</footer>

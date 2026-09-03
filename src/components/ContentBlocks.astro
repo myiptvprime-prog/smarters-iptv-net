@@ -1,0 +1,67 @@
+---
+import { channelGroups, devices, faq, reviews, site } from "../data/site";
+---
+
+<section class="section split-section" id="sender">
+  <div>
+    <p class="eyebrow">Sender & Inhalte</p>
+    <h2>Deutsche Sender, internationale Kategorien und flexible Geraete</h2>
+    <p>Smarters IPTV richtet sich an Nutzer in Deutschland, die IPTV kaufen moechten und vorab klare Informationen zu Sendern, Apps, Laufzeit und Kompatibilitaet brauchen.</p>
+    <a class="button secondary" href="/sender/">Senderuebersicht ansehen</a>
+  </div>
+  <div class="channel-grid">
+    {channelGroups.map(([title, text]) => (
+      <article>
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="section device-band">
+  <div class="section-title">
+    <p class="eyebrow">Installation</p>
+    <h2>Vorbereitet fuer Smart TV, Fire TV, Android, iOS, Windows und IPTV Box</h2>
+  </div>
+  <div class="device-list">
+    {devices.map(([label, href]) => <a href={href}>{label}</a>)}
+  </div>
+</section>
+
+<section class="section proof-grid">
+  {reviews.map((review) => (
+    <article class="review">
+      <strong>{review.name}</strong>
+      <span>{review.location}</span>
+      <p>{review.text}</p>
+    </article>
+  ))}
+</section>
+
+<section class="section faq-section" id="faq">
+  <div class="section-title">
+    <p class="eyebrow">FAQ</p>
+    <h2>Haeufige Fragen vor dem IPTV Kauf in Deutschland</h2>
+  </div>
+  <div class="faq-list">
+    {faq.map((item) => (
+      <details>
+        <summary>{item.q}</summary>
+        <p>{item.a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<section class="contact-band" id="kontakt">
+  <div>
+    <p class="eyebrow">Support</p>
+    <h2>Geraet pruefen lassen, Paket waehlen, Aktivierung starten</h2>
+    <p>Senden Sie uns Ihr Geraet, die gewuenschte Laufzeit und ob Sie ein oder zwei Geraete nutzen moechten. Wir empfehlen das passende Paket vor der Aktivierung.</p>
+  </div>
+  <div class="contact-actions">
+    <a class="button primary" href={site.whatsappUrl} aria-label="Smarters IPTV Deutschland Support per WhatsApp kontaktieren">WhatsApp starten</a>
+    <a class="button secondary" href={`mailto:${site.email}`} aria-label="Smarters IPTV Deutschland per E-Mail kontaktieren">E-Mail senden</a>
+  </div>
+</section>
