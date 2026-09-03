@@ -59,6 +59,22 @@ const canonicalUrl = new URL(canonical, site.url).toString();
       />
     )}
     <style is:inline set:html={globalCss}></style>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  window.addEventListener("load", function () {
+    window.setTimeout(function () {
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-54LWMVNRV7";
+      document.head.appendChild(script);
+
+      gtag("js", new Date());
+      gtag("config", "G-54LWMVNRV7");
+    }, 5000);
+  });
+</script>
   </head>
   <body>
     <slot />
